@@ -524,3 +524,6 @@ a.contact-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px -30p
   .hero--contact .hero-main { grid-template-columns: minmax(0, 1fr); }
   .li-banner { grid-column: 1; grid-row: auto; justify-self: stretch; margin-top: 6px; }
 }
+
+/* Contact: full-height hero, nothing below */
+.hero--page.hero--contact { min-height: 100vh; min-height: 100svh; justify-content: flex-end; padding-bottom: clamp(48px, 7vw, 96px); }
