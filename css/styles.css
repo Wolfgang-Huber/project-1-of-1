@@ -574,3 +574,8 @@ main.fachwerk { background: #ece5d5 url("../img/fachwerk.svg?v=16") 0 0 / 480px 
 /* No footer: let page content reach the bottom cleanly */
 body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
 #main { flex: 1 0 auto; }
+
+/* Overview bullet list */
+.overview-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; max-width: 760px; }
+.overview-list li { position: relative; padding-left: 28px; font-size: 18px; line-height: 1.55; color: var(--ink-2); }
+.overview-list li::before { content: ""; position: absolute; left: 4px; top: .62em; width: 10px; height: 10px; border-radius: 50%; background: var(--ink); }
