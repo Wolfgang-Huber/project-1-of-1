@@ -506,3 +506,21 @@ a.contact-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px -30p
   .site-header:not(.is-scrolled) .route a[aria-current="page"] .bullet { box-shadow: 0 0 0 4px var(--paper); }
   .site-header .route a[aria-current="page"], .site-header .route a[aria-current="page"]:hover { background: transparent !important; }
 }
+
+/* Contact hero: LinkedIn banner */
+.hero--contact .hero-main { grid-template-columns: minmax(0, 1fr) minmax(0, 400px); column-gap: clamp(28px, 4vw, 64px); align-items: end; }
+.hero--contact .hero-main > :not(.li-banner) { grid-column: 1; }
+.li-banner { grid-column: 2; grid-row: 1 / span 3; align-self: end; display: flex; align-items: center; gap: 16px; padding: 18px 20px 18px 18px; border-radius: 22px; background: #fff; color: var(--ink); box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 22px 44px -26px rgba(28,26,23,.55); transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+.li-banner:hover, .li-banner:focus-visible { transform: translateY(-4px); box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 30px 60px -28px rgba(28,26,23,.6); }
+.li-badge { flex: none; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 14px; background: #0A66C2; color: #fff; font: 700 28px/1 var(--apple); letter-spacing: -0.04em; }
+.li-text { display: grid; gap: 3px; min-width: 0; }
+.li-text small { font-size: 14px; font-weight: 500; color: var(--ink-2); }
+.li-text b { font-size: clamp(22px, 2vw, 28px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+.li-arrow { margin-left: auto; flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); font-size: 18px; transition: transform .3s var(--ease); }
+.li-banner:hover .li-arrow { transform: rotate(0deg) translate(2px, -2px); }
+.footer-grid a { border-bottom: 1px solid rgba(242,239,232,.4); }
+.footer-grid a:hover { color: var(--accent); border-color: var(--accent); }
+@media (max-width: 760px) {
+  .hero--contact .hero-main { grid-template-columns: minmax(0, 1fr); }
+  .li-banner { grid-column: 1; grid-row: auto; justify-self: stretch; margin-top: 6px; }
+}
