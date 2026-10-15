@@ -5,13 +5,6 @@ const header = document.querySelector('.site-header');
 const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 20);
 onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
 
-/* Mobile menu */
-const toggle = document.querySelector('.nav-toggle');
-const links = document.getElementById('nav-links');
-const setOpen = (o) => { toggle.setAttribute('aria-expanded', String(o)); links.classList.toggle('is-open', o); toggle.lastElementChild.textContent = o ? 'Close' : 'Menu'; };
-toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
-
 /* Staggered reveals */
 document.querySelectorAll('.hero-title, .hero-main, .hero-side, .work, .pillars, .section-head, .lots, .contact-grid, .about-grid, .lot-text')
   .forEach((g) => g.querySelectorAll(':scope .reveal').forEach((el, i) => el.style.setProperty('--d', `${Math.min(0.08 * i, 0.5) + (g.closest('.hero') ? 0.12 : 0)}s`)));

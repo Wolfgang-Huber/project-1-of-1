@@ -7,14 +7,13 @@
   function spot(a) {
     var b = a.querySelector('.bullet').getBoundingClientRect(), r = route.getBoundingClientRect();
     var x = b.left + b.width / 2 - r.left, y = b.top + b.height / 2 - r.top;
-    var yb = mobile.matches ? b.top + b.height / 2 - r.top + 36 : b.bottom - r.top + 8;
+    var yb = mobile.matches ? a.getBoundingClientRect().bottom - r.top + 10 : b.bottom - r.top + 8;
     return { x: x, y: yb, rot: 0 };                                          // parked under the current station
   }
   function place(a) { var s = spot(a); train.style.setProperty('--tx', s.x + 'px'); train.style.setProperty('--ty', s.y + 'px'); }
   var current = route.querySelector('a[aria-current="page"]') || route.querySelector('a');
   place(current); train.classList.add('is-placed');
   window.addEventListener('resize', function () { if (!train.classList.contains('is-moving')) place(current); });
-  document.addEventListener('click', function (e) { if (e.target.closest('.nav-toggle')) setTimeout(function () { place(current); }, 0); });
   route.addEventListener('click', function (e) {
     var a = e.target.closest('a');
     if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
