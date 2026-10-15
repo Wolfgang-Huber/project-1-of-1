@@ -619,3 +619,10 @@ body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: col
   .work-link > * { min-width: 0; }
   .work-name { white-space: normal; }
 }
+
+/* Station label pill above hero panels (About / Projects) */
+.hero-kicker-wrap { display: flex; margin-bottom: 14px; }
+.hero-kicker-wrap .hero-kicker { margin: 0; }
+@media (min-width: 761px) { .hero-kicker-wrap { padding-left: max(var(--pad), calc((100vw - 1440px) / 2 + var(--pad))); padding-right: 0; max-width: none; } }
+.hero--home .hero-kicker { margin-bottom: 18px; }
+.hero .hero-kicker-wrap .hero-kicker { background: rgba(244,248,253,.9) !important; padding: 5px 12px 5px 5px !important; box-shadow: none; }
