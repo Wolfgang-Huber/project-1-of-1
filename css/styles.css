@@ -570,3 +570,7 @@ main.fachwerk { background: #ece5d5 url("../img/fachwerk.svg?v=16") 0 0 / 480px 
   main.fachwerk { background-size: 336px 252px; }
   .fachwerk .hero--fachwerk .hero-main { margin: 0 var(--pad); width: auto; }
 }
+
+/* No footer: let page content reach the bottom cleanly */
+body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
+#main { flex: 1 0 auto; }
