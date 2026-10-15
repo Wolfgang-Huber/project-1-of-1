@@ -587,3 +587,4 @@ body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: col
 .about-body { margin: 0 0 14px; max-width: 62ch; font-size: 19px; line-height: 1.6; color: var(--ink-2); }
 .about-body:last-child { margin-bottom: 0; }
 @media (max-width: 760px) { .fachwerk .section > .wrap.about-single { margin: 0 var(--pad); width: auto; } .about-body { font-size: 17px; } }
+.about-single .about-block + .about-block { margin-top: clamp(32px, 4vw, 52px); }
