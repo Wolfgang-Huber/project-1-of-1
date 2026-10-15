@@ -626,4 +626,4 @@ body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: col
 @media (min-width: 761px) { .hero-kicker-wrap { padding-left: max(var(--pad), calc((100vw - 1440px) / 2 + var(--pad))); padding-right: 0; max-width: none; } }
 .hero--home .hero-kicker { margin-bottom: 18px; }
 .hero .hero-kicker-wrap .hero-kicker { background: rgba(244,248,253,.9) !important; padding: 5px 12px 5px 5px !important; box-shadow: none; }
-.lot-visual--img img[src*="europe-tracker-icon"] { filter: drop-shadow(0 6px 14px rgba(28,26,23,.14)) drop-shadow(0 1px 2px rgba(28,26,23,.10)); }
+.lot-visual--img img[src*="europe-tracker-icon"], .lot-visual--img img[src*="pixel-game-icon"] { filter: drop-shadow(0 6px 14px rgba(28,26,23,.14)) drop-shadow(0 1px 2px rgba(28,26,23,.10)); }
