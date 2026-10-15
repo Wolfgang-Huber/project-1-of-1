@@ -10,8 +10,7 @@
     var yb = mobile.matches ? b.top + b.height / 2 - r.top + 36 : b.bottom - r.top + 8;
     return { x: x, y: yb, rot: 0 };                                          // parked under the current station
   }
-  function place(a) { var s = spot(a); train.style.setProperty('--tx', s.x + 'px'); train.style.setProperty('--ty', s.y + 'px'); train.style.setProperty('--flip', flip); }
-  var flip = sessionStorage.getItem('trainFlip') || '1';
+  function place(a) { var s = spot(a); train.style.setProperty('--tx', s.x + 'px'); train.style.setProperty('--ty', s.y + 'px'); }
   var current = route.querySelector('a[aria-current="page"]') || route.querySelector('a');
   place(current); train.classList.add('is-placed');
   window.addEventListener('resize', function () { if (!train.classList.contains('is-moving')) place(current); });
@@ -23,8 +22,6 @@
     if (reduce) return;                       // instant: normal navigation
     e.preventDefault();
     var go = function () { location.href = a.href; };
-    var from = spot(current).x, to = spot(a).x;
-    flip = to < from ? '-1' : '1'; try { sessionStorage.setItem('trainFlip', flip); } catch (_) {}
     train.classList.add('is-moving'); place(a);
     var done = false, fin = function () { if (!done) { done = true; go(); } };
     train.addEventListener('transitionend', fin, { once: true }); setTimeout(fin, 950);
