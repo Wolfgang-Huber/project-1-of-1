@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480 360" width="480" height="360">
+  <defs>
+    <!-- plaster mottling and faint stains -->
+    <filter id="mottle" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="4" seed="4" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.45  0 0 0 0 0.3  0 0 0 1.1 -0.45"/>
+    </filter>
+    <filter id="speck" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="9" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.4  0 0 0 0 0.33  0 0 0 0 0.25  0 0 0 1.4 -0.72"/>
+    </filter>
+    <!-- wood grain: vertical streaks and horizontal streaks -->
+    <filter id="grainV" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.35 0.012" numOctaves="3" seed="2" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.62  0 0 0 0 0.52  0 0 0 0 0.4  0 0 0 1.5 -0.55"/>
+    </filter>
+    <filter id="grainH" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.35" numOctaves="3" seed="5" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.62  0 0 0 0 0.52  0 0 0 0 0.4  0 0 0 1.5 -0.55"/>
+    </filter>
+    <!-- timber frame (seamless: edge beams split across tile borders) -->
+    <g id="hbeams">
+      <rect x="0" y="0" width="480" height="11"/><rect x="0" y="349" width="480" height="11"/>
+      <rect x="0" y="112" width="480" height="15"/><rect x="150" y="232" width="180" height="15"/>
+    </g>
+    <g id="vbeams">
+      <rect x="0" y="0" width="10" height="360"/><rect x="470" y="0" width="10" height="360"/>
+      <rect x="150" y="0" width="20" height="360"/><rect x="310" y="0" width="20" height="360"/>
+      <rect x="72" y="0" width="16" height="112"/><rect x="232" y="0" width="16" height="112"/><rect x="232" y="247" width="16" height="102"/>
+      <rect x="392" y="0" width="16" height="112"/>
+    </g>
+    <g id="braces">
+      <polygon points="10,349 26,349 150,135 150,112 142,112 10,330"/>
+      <polygon points="470,349 454,349 330,135 330,112 338,112 470,330"/>
+    </g>
+    <mask id="mH"><use xlink:href="#hbeams" fill="#fff"/></mask>
+    <mask id="mV"><use xlink:href="#vbeams" fill="#fff"/><use xlink:href="#braces" fill="#fff"/></mask>
+    <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a2c22"/><stop offset=".5" stop-color="#2a201a"/><stop offset="1" stop-color="#352820"/>
+    </linearGradient>
+  </defs>
+  <!-- plaster -->
+  <rect width="480" height="360" fill="#ece5d5"/>
+  <rect width="480" height="360" filter="url(#mottle)" opacity=".55"/>
+  <rect width="480" height="360" filter="url(#speck)" opacity=".35"/>
+  <!-- stains running down from beams -->
+  <g fill="#b98f57" opacity=".07">
+    <path d="M182 127c4 30 -2 52 6 80 3-26 10-48 6-80z"/><path d="M420 11c6 24 0 40 8 64 2-22 8-40 4-64z"/><path d="M95 247c3 20 -3 36 4 56 2-18 6-34 4-56z"/>
+  </g>
+  <!-- shadow of beams on plaster -->
+  <g fill="#000" opacity=".12" transform="translate(2 2)"><use xlink:href="#hbeams"/><use xlink:href="#vbeams"/><use xlink:href="#braces"/></g>
+  <!-- beams -->
+  <g fill="url(#wood)"><use xlink:href="#vbeams"/><use xlink:href="#braces"/><use xlink:href="#hbeams"/></g>
+  <rect width="480" height="360" filter="url(#grainV)" mask="url(#mV)" opacity=".45"/>
+  <rect width="480" height="360" filter="url(#grainH)" mask="url(#mH)" opacity=".45"/>
+  <!-- joint lines -->
+  <g stroke="#120d0a" stroke-width="1.2" opacity=".55">
+    <path d="M0 112H480M0 127H480M150 232H330M150 247H330"/>
+  </g>
+</svg>

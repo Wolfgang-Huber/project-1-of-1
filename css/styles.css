@@ -553,3 +553,20 @@ main.azulejo { background: #efe7d6 url("../img/azulejo.svg?v=10") 0 0 / 400px 40
 .lot-visual--img img { position: absolute; inset: 0; width: 100% !important; height: 100% !important; max-width: none; object-fit: contain; padding: 8%; box-sizing: border-box; display: block; }
 .lot-visual--hero.lot-visual--img { border-radius: 28px; }
 .hero--page .hero-main > .btn { justify-self: start; width: max-content; }
+
+/* About: German half-timbered (Fachwerk) background */
+main.fachwerk { background: #ece5d5 url("../img/fachwerk.svg?v=16") 0 0 / 480px 360px; }
+.fachwerk .hero.hero--fachwerk, .fachwerk .hero.has-tiles { background: transparent !important; }
+.fachwerk .hero--fachwerk { min-height: 100vh; min-height: 100svh; justify-content: center; padding-top: calc(var(--header-h) + 48px); padding-bottom: clamp(80px, 14vh, 180px); }
+.fachwerk .hero--fachwerk .hero-main { width: min(100% - 2 * var(--pad), 760px); padding: clamp(24px, 3vw, 40px); background: rgba(255,255,255,.98); border-radius: 26px; box-shadow: 0 1px 0 rgba(0,0,0,.05), 0 30px 60px -34px rgba(30,20,10,.65); }
+@media (min-width: 761px) { .fachwerk .hero--fachwerk .hero-main { margin-left: max(var(--pad), calc((100vw - 1440px) / 2 + var(--pad))); } }
+.fachwerk .hero--fachwerk .hero-kicker, .fachwerk .hero--fachwerk .hero-sub { background: transparent; padding-left: 0; box-shadow: none; }
+.fachwerk .hero--fachwerk .hero-sub { padding: 0; width: auto; }
+.fachwerk .section { background: transparent; padding-bottom: clamp(64px, 8vw, 120px); }
+.fachwerk .section > .wrap { width: calc(100% - 2 * var(--pad)); max-width: calc(1440px - 2 * var(--pad)); padding: clamp(24px, 3vw, 44px); background: rgba(255,255,255,.98); border-radius: 26px; box-shadow: 0 1px 0 rgba(0,0,0,.05), 0 30px 60px -34px rgba(30,20,10,.65); }
+.fachwerk .section > .wrap + .wrap { margin-top: 20px; }
+.fachwerk .about-grid { margin-bottom: 0; }
+@media (max-width: 760px) {
+  main.fachwerk { background-size: 336px 252px; }
+  .fachwerk .hero--fachwerk .hero-main { margin: 0 var(--pad); width: auto; }
+}
