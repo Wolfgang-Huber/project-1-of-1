@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wolfgang-huber.github.io/project-1-of-1/sitemap.xml
