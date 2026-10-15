@@ -531,3 +531,18 @@ a.contact-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px -30p
 
 /* Contact: banner aligned with headline */
 @media (min-width: 761px) { .hero--contact .li-banner { grid-row: 2; align-self: center; } }
+
+/* Projects: vintage azulejo tiles */
+main.azulejo { background: #efe7d6 url("../img/azulejo.svg?v=10") 0 0 / 400px 400px; }
+.azulejo .hero.hero--azulejo, .azulejo .hero.has-tiles { background: transparent !important; }
+.azulejo .hero--azulejo { min-height: 100vh; min-height: 100svh; justify-content: center; padding-top: calc(var(--header-h) + 48px); padding-bottom: clamp(80px, 14vh, 180px); }
+.azulejo .hero--azulejo .hero-main { width: min(100% - 2 * var(--pad), 760px); margin-left: var(--pad); padding: clamp(24px, 3vw, 40px); background: rgba(255,255,255,.94); border-radius: 26px; box-shadow: 0 1px 0 rgba(0,0,0,.05), 0 30px 60px -34px rgba(20,24,60,.6); }
+@media (min-width: 761px) { .azulejo .hero--azulejo .hero-main { margin-left: max(var(--pad), calc((100vw - 1440px) / 2 + var(--pad))); } }
+.azulejo .hero--azulejo .hero-kicker, .azulejo .hero--azulejo .hero-sub { background: transparent; padding-left: 0; box-shadow: none; }
+.azulejo .hero--azulejo .hero-sub { padding: 0; width: auto; }
+.azulejo .section { background: transparent; padding-bottom: clamp(64px, 8vw, 120px); }
+.azulejo .lot-card a { box-shadow: 0 1px 0 rgba(0,0,0,.05), 0 24px 50px -28px rgba(20,24,60,.65); }
+@media (max-width: 760px) {
+  main.azulejo { background-size: 280px 280px; }
+  .azulejo .hero--azulejo .hero-main { margin: 0 var(--pad); width: auto; }
+}
