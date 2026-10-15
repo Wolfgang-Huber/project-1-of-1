@@ -546,3 +546,9 @@ main.azulejo { background: #efe7d6 url("../img/azulejo.svg?v=10") 0 0 / 400px 40
   main.azulejo { background-size: 280px 280px; }
   .azulejo .hero--azulejo .hero-main { margin: 0 var(--pad); width: auto; }
 }
+
+/* Project image visuals */
+.lot-visual--img { background: #fdfefe; box-shadow: inset 0 0 0 1px var(--line); border-radius: 16px; }
+.lot-visual--img { position: relative; overflow: hidden; }
+.lot-visual--img img { position: absolute; inset: 0; width: 100% !important; height: 100% !important; max-width: none; object-fit: contain; padding: 8%; box-sizing: border-box; display: block; }
+.lot-visual--hero.lot-visual--img { border-radius: 28px; }
