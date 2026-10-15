@@ -526,4 +526,5 @@ a.contact-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px -30p
 }
 
 /* Contact: full-height hero, nothing below */
-.hero--page.hero--contact { min-height: 100vh; min-height: 100svh; justify-content: flex-end; padding-bottom: clamp(48px, 7vw, 96px); }
+.hero--page.hero--contact { min-height: 100vh; min-height: 100svh; justify-content: center; padding-top: calc(var(--header-h) + 48px); padding-bottom: clamp(96px, 16vh, 200px); }
+@media (max-width: 760px) { .hero--page.hero--contact { justify-content: center; padding-top: calc(var(--header-h) + 40px); padding-bottom: 14vh; } }
