@@ -264,14 +264,15 @@ body::after {
 .nav-toggle { font-family: var(--transit); font-weight: 700; }
 
 @media (max-width: 760px) {
-  .route { position: fixed; top: var(--header-h); left: 0; right: 0; padding: 14px var(--pad) 22px !important; }
-  .route::before { left: calc(var(--pad) + 22px); right: auto; top: 30px; bottom: 34px; width: 3px; height: auto; transform: none; }
-  .route a, .route a:hover { display: flex !important; margin: 0; padding: 10px 0 !important; gap: 16px; border-bottom: 0 !important; background: transparent !important; font-size: inherit !important; letter-spacing: 0 !important; }
+  .route { position: fixed; top: var(--header-h); left: 0; right: 0; flex-direction: row; justify-content: space-between; padding: 12px var(--pad) 38px !important; background: var(--paper); box-shadow: 0 1px 0 var(--line); }
+  .route::before { left: calc(var(--pad) + 18px); right: calc(var(--pad) + 18px); top: 34px; width: auto; height: 3px; }
+  .route a, .route a:hover { display: inline-flex !important; flex-direction: column; align-items: center; margin: 0 !important; padding: 0 !important; gap: 6px; background: transparent !important; font-size: inherit !important; letter-spacing: 0 !important; }
   .route .bullet { width: 44px; height: 44px; font-size: 24px; box-shadow: 0 0 0 4px var(--paper); }
   .route a[aria-current="page"] .bullet { box-shadow: 0 0 0 4px var(--paper), 0 0 0 6px var(--ink); }
-  .route .stop b { font-size: 24px; letter-spacing: -0.02em; }
-  .route .stop small { display: block; font-size: 14px; }
-  .route a[aria-current="page"] .stop b { text-decoration: none; }
+  .route .stop { text-align: center; }
+  .route .stop b { font-size: 13px; letter-spacing: -0.01em; }
+  .route .stop small { display: none; }
+  .route a[aria-current="page"] .stop b { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 3px; }
 }
 .route a { text-decoration: none !important; }
 
@@ -357,9 +358,6 @@ em { font-family: var(--apple); font-style: normal; font-weight: inherit; }
 .work-name { font-size: clamp(28px, 3.2vw, 48px); white-space: nowrap; }
 
 /* ===================== Multi-page site ===================== */
-html.js body { animation: page-in .5s cubic-bezier(.2,.9,.1,1) both; }
-@keyframes page-in { from { opacity: 0; } }
-html.is-leaving body { opacity: 0; transition: opacity .22s ease; }
 
 /* Home hero without centerpiece: wide headline */
 .hero--home .hero-main { grid-template-columns: minmax(0, 1fr); }
@@ -458,6 +456,44 @@ a.contact-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px -30p
   .facts div { grid-template-columns: 90px 1fr; }
   .footer-bottom { flex-wrap: wrap; gap: 14px; }
 }
+
+/* ===================== Transit nav: long line + train ===================== */
+@view-transition { navigation: auto; }
+.site-header { view-transition-name: site-header; }
+.train { view-transition-name: nav-train; }
+::view-transition-group(site-header), ::view-transition-group(nav-train) { animation: none; }
+::view-transition-old(site-header), ::view-transition-new(site-header),
+::view-transition-old(nav-train), ::view-transition-new(nav-train) { animation: none; }
+::view-transition-old(root) { animation: vt-out .18s ease both; }
+::view-transition-new(root) { animation: vt-in .28s ease both; }
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; } }
+
+@media (min-width: 761px) {
+  .route { width: min(58vw, 860px); justify-content: space-between; padding: 4px 0 14px !important; }
+  .route a, .route a:hover { margin: 0 !important; }
+  .route::before { left: 18px; right: 18px; top: calc(50% - 5px); }
+}
+.train-li { position: absolute !important; left: 0; top: 0; z-index: 3 !important; pointer-events: none; list-style: none; }
+.train { position: absolute; left: 0; top: 0; display: block; width: 44px; height: 22px; margin: -11px 0 0 -22px;
+  transform: translate(var(--tx, 0px), var(--ty, 0px)) rotate(var(--rot, 0deg)); opacity: 0; filter: drop-shadow(0 2px 2px rgba(28,26,23,.25)); }
+.train.is-placed { opacity: 1; }
+.train.is-moving { transition: transform .8s cubic-bezier(.65,0,.35,1); }
+.train svg { display: block; }
+.train.is-moving svg { animation: train-bob .2s ease-in-out infinite alternate; }
+.train.is-moving .wheels circle { animation: train-wheel .2s linear infinite alternate; }
+@keyframes train-bob { to { transform: translateY(-1.2px); } }
+@keyframes train-wheel { to { transform: translateY(.6px); } }
+@media (max-width: 760px) {
+  .route .train-li { display: block; }
+}
 @media (prefers-reduced-motion: reduce) {
-  html.js body { animation: none; }
+  .train.is-moving { transition: none; }
+  .train.is-moving svg, .train.is-moving .wheels circle { animation: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
+
+@media (max-width: 760px) {
+  .train { margin: -11px 0 0 -22px; }
+  .route .train-li { display: block; }
 }

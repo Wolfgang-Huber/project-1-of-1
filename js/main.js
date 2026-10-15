@@ -25,16 +25,3 @@ else {
   reveals.forEach((el) => io.observe(el));
 }
 
-/* Smooth page feel: soft fade between internal pages */
-if (!reduce) {
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('a');
-    if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || a.target === '_blank') return;
-    const url = new URL(a.href, location.href);
-    if (url.origin !== location.origin || url.protocol.startsWith('mailto') || (url.pathname === location.pathname && url.hash)) return;
-    e.preventDefault();
-    document.documentElement.classList.add('is-leaving');
-    setTimeout(() => { location.href = url.href; }, 220);
-  });
-  window.addEventListener('pageshow', () => document.documentElement.classList.remove('is-leaving'));
-}
