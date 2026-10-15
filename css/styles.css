@@ -588,3 +588,6 @@ body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: col
 .about-body:last-child { margin-bottom: 0; }
 @media (max-width: 760px) { .fachwerk .section > .wrap.about-single { margin: 0 var(--pad); width: auto; } .about-body { font-size: 17px; } }
 .about-single .about-block + .about-block { margin-top: clamp(32px, 4vw, 52px); }
+/* About: full-width idea panel */
+.fachwerk .section > .wrap.about-single { max-width: calc(1440px - 2 * var(--pad)); margin-left: auto; margin-right: auto; }
+.about-single .about-lead, .about-single .about-body { max-width: none; }
