@@ -494,3 +494,15 @@ a.contact-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px -30p
 @media (max-width: 760px) {
   .route .train-li { display: block; }
 }
+
+/* Active station: solid white pill, no underline, no ring */
+.route a[aria-current="page"] .stop b,
+.site-header .route a[aria-current="page"] .stop b { text-decoration: none !important; }
+.route a[aria-current="page"] .bullet,
+.site-header:not(.is-scrolled) .route a[aria-current="page"] .bullet { box-shadow: inset 0 -2px 0 rgba(0,0,0,.08); }
+.site-header .route a[aria-current="page"], .site-header .route a[aria-current="page"]:hover { background: #fff !important; }
+@media (max-width: 760px) {
+  .route a[aria-current="page"] .bullet,
+  .site-header:not(.is-scrolled) .route a[aria-current="page"] .bullet { box-shadow: 0 0 0 4px var(--paper); }
+  .site-header .route a[aria-current="page"], .site-header .route a[aria-current="page"]:hover { background: transparent !important; }
+}
