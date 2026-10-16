@@ -85,12 +85,6 @@ body::after {
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ---------- Marquee ---------- */
-.marquee { overflow: hidden; background: var(--ink); color: var(--paper); padding: 18px 0; border-block: 1px solid var(--ink); }
-.marquee-track { display: flex; width: max-content; gap: 34px; align-items: center; animation: marquee 32s linear infinite; font: 400 clamp(32px, 3.8vw, 54px)/1 var(--display); letter-spacing: -0.01em; }
-.marquee-track span:nth-child(4n+3) { font-family: var(--serif); font-style: italic; font-weight: 400; }
-.marquee i { font-style: normal; font-size: .4em; }
-.marquee .c1 { color: var(--accent); } .marquee .c2 { color: var(--coral); } .marquee .c3 { color: var(--sky); } .marquee .c4 { color: var(--lime); }
-@keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- Sections ---------- */
 .section { padding: clamp(88px, 11vw, 160px) 0; }
@@ -320,8 +314,6 @@ em { font-family: var(--apple); font-style: normal; font-weight: inherit; }
 .about-title { font-family: var(--apple); font-weight: 600; letter-spacing: -0.035em; line-height: 1.06; }
 .pillars h3 { font-family: var(--apple); font-weight: 700; font-size: 30px; letter-spacing: -0.03em; }
 .footer-title { font-family: var(--apple); font-weight: 700; letter-spacing: -0.06em; }
-.marquee-track { font: 600 clamp(28px, 3.4vw, 46px)/1 var(--apple); letter-spacing: -0.035em; }
-.marquee-track span:nth-child(4n+3) { font-family: var(--apple); font-style: normal; font-weight: 400; }
 .mono { font-family: var(--apple); font-weight: 600; font-size: 13px; letter-spacing: -0.005em; }
 .bullet { font-family: var(--apple); font-weight: 700; letter-spacing: -0.02em; }
 .route .stop b { font-family: var(--apple); font-weight: 600; letter-spacing: -0.015em; }
@@ -649,11 +641,11 @@ body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: col
 .work-item--coral .work-thumb.swatch::before, .work-item--coral .work-thumb.swatch::after { display: none; }
 .work-item--coral .work-link:is(:hover, :focus-visible) .work-thumb.swatch { box-shadow: inset 0 0 0 2px rgba(255,255,255,.85), 0 12px 24px -10px rgba(0,0,0,.4); }
 /* GoMo home thumbnail: app-icon tile on GoMo blue (#038dea, sampled from gomo.png) */
-.work-item--sky .work-thumb.swatch { background: #038dea url("../img/gomo.png?v=66") center / auto 82% no-repeat; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 10px 22px -12px rgba(0,0,0,.35); }
+.work-item--sky .work-thumb.swatch { background: #038dea url("../img/gomo.png?v=67") center / auto 82% no-repeat; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 10px 22px -12px rgba(0,0,0,.35); }
 .work-item--sky .work-thumb.swatch::before, .work-item--sky .work-thumb.swatch::after { display: none; }
 .work-item--sky .work-link:is(:hover, :focus-visible) .work-thumb.swatch { box-shadow: inset 0 0 0 2px rgba(255,255,255,.85), 0 12px 24px -10px rgba(0,0,0,.4); }
 /* Pixel Game home thumbnail: app icon, sky extended to landscape */
-.work-item--lime .work-thumb.swatch { background: #0082fe url("../img/pixel-game-thumb.png?v=66") center / cover no-repeat; image-rendering: pixelated; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 10px 22px -12px rgba(0,0,0,.35); }
+.work-item--lime .work-thumb.swatch { background: #0082fe url("../img/pixel-game-thumb.png?v=67") center / cover no-repeat; image-rendering: pixelated; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 10px 22px -12px rgba(0,0,0,.35); }
 .work-item--lime .work-thumb.swatch::before, .work-item--lime .work-thumb.swatch::after { display: none; }
 .work-item--lime .work-link:is(:hover, :focus-visible) .work-thumb.swatch { box-shadow: inset 0 0 0 2px rgba(255,255,255,.85), 0 12px 24px -10px rgba(0,0,0,.4); }
 /* In Progress status dot: soft repeating green glow pulse everywhere (kept even with reduced motion: gentle, small) */
@@ -682,3 +674,7 @@ body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: col
 @media (max-width: 760px) { .hero.hero--home { padding-top: max(calc(var(--header-h) + 24px), calc(42.9vh - 56px)); } }
 .hero--home .hero-top { position: absolute; top: calc(var(--header-h) + 2px); left: 0; right: 0; }
 @media (max-width: 760px) { .hero-star { top: calc(var(--header-h) + 10px); width: min(46vw, calc((42.9vh - 166px) * .95)); } }
+/* Home koi pond strip (replaces marquee) */
+.koi-pond { position: relative; height: clamp(160px, 16vw, 230px); overflow: hidden; background: linear-gradient(180deg, #2a86a8, #3fa3c0 55%, #2f8fb0); -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%); touch-action: pan-y; cursor: crosshair; }
+.koi-canvas { display: block; width: 100%; height: 100%; }
+@media (max-width: 760px) { .koi-pond { height: 160px; } }
