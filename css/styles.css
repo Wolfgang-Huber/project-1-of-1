@@ -633,3 +633,6 @@ body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: col
   .site-header .logo { display: none !important; }
   .nav { padding-top: calc(10px + env(safe-area-inset-top, 0px)); row-gap: 0; }
 }
+/* Home list: type labels removed; give names room, no overlap */
+@media (min-width: 1101px) { .work-link { grid-template-columns: 70px 120px minmax(0, 1.7fr) 120px minmax(0, 1.2fr) 48px; } }
+@media (min-width: 761px) { .work-name { white-space: normal; } }
