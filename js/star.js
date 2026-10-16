@@ -4,7 +4,7 @@
   if (!root) return;
   var svg = root.querySelector('svg');
   var bob = svg.querySelector('.st-bob'), face = svg.querySelector('.st-face'), bow = svg.querySelector('.st-bow');
-  var glasses = svg.querySelector('.st-glasses'), lids = svg.querySelectorAll('.st-lid'), shadow = svg.querySelector('.st-shadow');
+  var glasses = svg.querySelector('.st-glasses'), pupils = svg.querySelectorAll('.st-pupil'), lidsR = svg.querySelectorAll('.st-eyelid'), lid = 0, eyesO = svg.querySelector('.st-eyes-open'), eyesC = svg.querySelector('.st-eyes-closed'), shadow = svg.querySelector('.st-shadow');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var tx = 0, ty = 0, x = 0, y = 0, lastMove = -1e9, t0 = performance.now();
   var blinkUntil = 0, happyUntil = 0, hover = false;
@@ -41,10 +41,15 @@
     x += (tx - x) * 0.09; y += (ty - y) * 0.09;
     var happy = hover || now < happyUntil, blink = now < blinkUntil;
     svg.classList.toggle('is-happy', happy);
-    var sy = blink ? 0.08 : 1;
-    for (var i = 0; i < lids.length; i++) lids[i].setAttribute('transform', 'translate(' + (x * 15).toFixed(2) + ' ' + (y * 15).toFixed(2) + ') scale(1 ' + sy + ')');
+    lid += ((blink ? 1 : 0) - lid) * (blink ? 0.55 : 0.35);
+    var m = Math.hypot(x, y), px = m > 1 ? x / m : x, py = m > 1 ? y / m : y;
+    for (var i = 0; i < pupils.length; i++) {
+      pupils[i].setAttribute('transform', 'translate(' + (px * 13).toFixed(2) + ' ' + (py * 13).toFixed(2) + ')');
+      lidsR[i].setAttribute('height', (58 * lid).toFixed(2));
+    }
     face.setAttribute('transform', 'translate(' + (x * 9).toFixed(2) + ' ' + (y * 7).toFixed(2) + ')');
-    glasses.setAttribute('transform', 'translate(' + (x * 2).toFixed(2) + ' ' + (y * 1.5).toFixed(2) + ')');
+    var gT = 'translate(' + (x * 2).toFixed(2) + ' ' + (y * 1.5).toFixed(2) + ')';
+    glasses.setAttribute('transform', gT); eyesO.setAttribute('transform', gT); eyesC.setAttribute('transform', gT);
     bow.setAttribute('transform', 'translate(' + (200 - x * 3).toFixed(2) + ' ' + (276 - y * 2).toFixed(2) + ') rotate(' + (x * 4).toFixed(2) + ')');
     if (!reduce) {
       var b = Math.sin(t * 1.6) * 7;
