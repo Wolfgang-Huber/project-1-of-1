@@ -649,11 +649,11 @@ body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: col
 .work-item--coral .work-thumb.swatch::before, .work-item--coral .work-thumb.swatch::after { display: none; }
 .work-item--coral .work-link:is(:hover, :focus-visible) .work-thumb.swatch { box-shadow: inset 0 0 0 2px rgba(255,255,255,.85), 0 12px 24px -10px rgba(0,0,0,.4); }
 /* GoMo home thumbnail: app-icon tile on GoMo blue (#038dea, sampled from gomo.png) */
-.work-item--sky .work-thumb.swatch { background: #038dea url("../img/gomo.png?v=56") center / auto 82% no-repeat; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 10px 22px -12px rgba(0,0,0,.35); }
+.work-item--sky .work-thumb.swatch { background: #038dea url("../img/gomo.png?v=57") center / auto 82% no-repeat; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 10px 22px -12px rgba(0,0,0,.35); }
 .work-item--sky .work-thumb.swatch::before, .work-item--sky .work-thumb.swatch::after { display: none; }
 .work-item--sky .work-link:is(:hover, :focus-visible) .work-thumb.swatch { box-shadow: inset 0 0 0 2px rgba(255,255,255,.85), 0 12px 24px -10px rgba(0,0,0,.4); }
 /* Pixel Game home thumbnail: app icon, sky extended to landscape */
-.work-item--lime .work-thumb.swatch { background: #0082fe url("../img/pixel-game-thumb.png?v=56") center / cover no-repeat; image-rendering: pixelated; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 10px 22px -12px rgba(0,0,0,.35); }
+.work-item--lime .work-thumb.swatch { background: #0082fe url("../img/pixel-game-thumb.png?v=57") center / cover no-repeat; image-rendering: pixelated; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 10px 22px -12px rgba(0,0,0,.35); }
 .work-item--lime .work-thumb.swatch::before, .work-item--lime .work-thumb.swatch::after { display: none; }
 .work-item--lime .work-link:is(:hover, :focus-visible) .work-thumb.swatch { box-shadow: inset 0 0 0 2px rgba(255,255,255,.85), 0 12px 24px -10px rgba(0,0,0,.4); }
 /* In Progress status dot: soft repeating green glow pulse everywhere (kept even with reduced motion: gentle, small) */
@@ -668,3 +668,11 @@ body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: col
 .logo-outline { display: inline-block; font-family: var(--apple); font-weight: 700; font-size: 26px; line-height: 1; letter-spacing: -0.03em; color: transparent; -webkit-text-stroke: 1.4px #1c1a17; white-space: nowrap; padding: 8px 20px 9px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 0 1px rgba(28,26,23,.18), 0 4px 12px -4px rgba(28,26,23,.35); }
 /* Ellipse wordmark logo (inline SVG, desktop) */
 .logo-svg { display: block; width: 204px; height: 64px; overflow: visible; }
+/* Home hero mascot star (where the globe used to be) */
+.hero-star { position: absolute; z-index: 1; right: max(4vw, calc((100vw - 1440px) / 2 + 4vw)); top: calc(var(--header-h) + 4vh); width: clamp(240px, 27vw, 430px); aspect-ratio: 400 / 420; perspective: 900px; pointer-events: none; }
+.star-svg { display: block; width: 100%; height: 100%; overflow: visible; transform-style: preserve-3d; will-change: transform; pointer-events: auto; cursor: pointer; }
+.star-svg .st-lid { transform-box: fill-box; }
+.star-svg .st-eyes-closed { opacity: 0; }
+.star-svg.is-happy .st-eyes-closed { opacity: 1; }
+.star-svg.is-happy .st-eyes-open { opacity: 0; }
+@media (max-width: 760px) { .hero-star { right: 50%; transform: translateX(50%); top: calc(var(--header-h) + 3vh); width: min(58vw, 34vh); } }
