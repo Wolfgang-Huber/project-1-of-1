@@ -20,7 +20,18 @@
   window.addEventListener('touchmove', function (e) { var t = e.touches[0]; if (t) aim(t.clientX, t.clientY); }, { passive: true });
   svg.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') hover = true; });
   svg.addEventListener('pointerleave', function () { hover = false; });
-  svg.addEventListener('click', function () { happyUntil = performance.now() + 1400; });
+  var spinStart = -1, spinDir = 1, spinQueued = false, SPIN_MS = 900;
+  function startSpin() { spinStart = performance.now(); spinDir = Math.random() < 0.5 ? -1 : 1; happyUntil = spinStart + SPIN_MS + 250; }
+  svg.addEventListener('click', function () { if (spinStart < 0) startSpin(); else spinQueued = true; });
+  function spinXf(now) {
+    if (spinStart < 0) return '';
+    var p = (now - spinStart) / SPIN_MS;
+    if (p >= 1) { spinStart = -1; if (spinQueued) { spinQueued = false; startSpin(); } return ''; }
+    var c = 1.9, q = p - 1, e = 1 + (c + 1) * q * q * q + c * q * q; // springy ease-out (overshoot)
+    var squash = p < 0.18 ? Math.sin(p / 0.18 * Math.PI) * 0.12 : 0;              // little squash at start
+    var bounce = p > 0.7 ? Math.sin((p - 0.7) / 0.3 * Math.PI) * 0.07 : 0;         // bounce at the end
+    return 'rotateZ(' + (spinDir * 360 * e).toFixed(2) + 'deg) scale(' + (1 + squash - bounce * 0.5).toFixed(3) + ',' + (1 - squash + bounce).toFixed(3) + ') ';
+  }
 
   function scheduleBlink() {
     setTimeout(function () {
@@ -59,8 +70,9 @@
       bob.setAttribute('transform', 'translate(0 ' + b.toFixed(2) + ')');
       shadow.setAttribute('transform', 'translate(200 370) scale(' + (1 - b / 90).toFixed(3) + ') translate(-200 -370)');
       var ax = Math.abs(x), sq = 1 + (vy * 0.6);
-      svg.style.transform = 'translateX(' + (x * 12).toFixed(2) + 'px) rotateY(' + (x * 19).toFixed(2) + 'deg) rotateX(' + (-y * 14).toFixed(2) + 'deg) rotateZ(' + (x * 9).toFixed(2) + 'deg) skewX(' + (-x * 5).toFixed(2) + 'deg) scale(' + (1 - ax * 0.05 + vx * 0.3 * Math.sign(x || 1)).toFixed(3) + ',' + (sq + ax * 0.03).toFixed(3) + ')';
+      svg.style.transform = spinXf(now) + 'translateX(' + (x * 12).toFixed(2) + 'px) rotateY(' + (x * 19).toFixed(2) + 'deg) rotateX(' + (-y * 14).toFixed(2) + 'deg) rotateZ(' + (x * 9).toFixed(2) + 'deg) skewX(' + (-x * 5).toFixed(2) + 'deg) scale(' + (1 - ax * 0.05 + vx * 0.3 * Math.sign(x || 1)).toFixed(3) + ',' + (sq + ax * 0.03).toFixed(3) + ')';
     }
+    if (reduce) svg.style.transform = spinXf(now);
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
