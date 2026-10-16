@@ -636,3 +636,11 @@ body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: col
 /* Home list: type labels removed; give names room, no overlap */
 @media (min-width: 1101px) { .work-link { grid-template-columns: 70px 120px minmax(0, 1.7fr) 120px minmax(0, 1.2fr) 48px; } }
 @media (min-width: 761px) { .work-name { white-space: normal; } }
+/* Per-project hover fills (home list): ET star green, Pixel Game console purple */
+.work-item--coral { --hover: #3a6323; }
+.work-item--sky { --hover: var(--sky); }
+.work-item--lime { --hover: #5a4fb8; }
+.work-link::before { background: var(--hover, var(--lot, var(--accent))); }
+.work-item--coral .work-link:is(:hover, :focus-visible), .work-item--lime .work-link:is(:hover, :focus-visible),
+.work-item--coral .work-link:is(:hover, :focus-visible) :is(.mono, .work-desc, .work-name), .work-item--lime .work-link:is(:hover, :focus-visible) :is(.mono, .work-desc, .work-name) { color: #fff; }
+.work-item--coral .work-link:is(:hover, :focus-visible) .work-arrow, .work-item--lime .work-link:is(:hover, :focus-visible) .work-arrow { background: #fff; border-color: #fff; color: var(--ink); }
