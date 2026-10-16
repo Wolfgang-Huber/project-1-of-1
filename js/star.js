@@ -50,7 +50,7 @@
       var b = Math.sin(t * 1.6) * 7;
       bob.setAttribute('transform', 'translate(0 ' + b.toFixed(2) + ')');
       shadow.setAttribute('transform', 'translate(200 370) scale(' + (1 - b / 90).toFixed(3) + ') translate(-200 -370)');
-      svg.style.transform = 'rotateY(' + (x * 16).toFixed(2) + 'deg) rotateX(' + (-y * 11).toFixed(2) + 'deg) rotateZ(' + (x * 4).toFixed(2) + 'deg)';
+      svg.style.transform = 'translateX(' + (x * 10).toFixed(2) + 'px) rotateY(' + (x * 32).toFixed(2) + 'deg) rotateX(' + (-y * 22).toFixed(2) + 'deg) rotateZ(' + (x * 12).toFixed(2) + 'deg) skewX(' + (-x * 6).toFixed(2) + 'deg)';
     }
     requestAnimationFrame(frame);
   }
