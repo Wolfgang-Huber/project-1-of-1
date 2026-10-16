@@ -4,7 +4,7 @@
   if (!root) return;
   var svg = root.querySelector('svg');
   var bob = svg.querySelector('.st-bob'), face = svg.querySelector('.st-face'), bow = svg.querySelector('.st-bow');
-  var glasses = svg.querySelector('.st-glasses'), pupils = svg.querySelectorAll('.st-pupil'), lidsR = svg.querySelectorAll('.st-eyelid'), lid = 0, eyesO = svg.querySelector('.st-eyes-open'), eyesC = svg.querySelector('.st-eyes-closed'), shadow = svg.querySelector('.st-shadow');
+  var glasses = svg.querySelector('.st-glasses'), pupils = svg.querySelectorAll('.st-pupil'), lidsR = svg.querySelectorAll('.st-eyelid'), lid = 0, eyesO = svg.querySelector('.st-eyes-open'), eyesC = svg.querySelector('.st-eyes-closed'), shadow = svg.querySelector('.st-shadow'), back = svg.querySelector('.st-back'), dark = svg.querySelector('.st-dark'), light = svg.querySelector('.st-light'), vx = 0, vy = 0;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var tx = 0, ty = 0, x = 0, y = 0, lastMove = -1e9, t0 = performance.now();
   var blinkUntil = 0, happyUntil = 0, hover = false;
@@ -38,7 +38,7 @@
       tx = Math.sin(t * 0.45) * 0.55 + Math.sin(t * 1.1) * 0.15;
       ty = Math.sin(t * 0.33 + 1.3) * 0.35;
     }
-    x += (tx - x) * 0.09; y += (ty - y) * 0.09;
+    vx = (vx + (tx - x) * 0.045) * 0.86; vy = (vy + (ty - y) * 0.045) * 0.86; x += vx; y += vy; // soft wobbly spring
     var happy = hover || now < happyUntil, blink = now < blinkUntil;
     svg.classList.toggle('is-happy', happy);
     lid += ((blink ? 1 : 0) - lid) * (blink ? 0.55 : 0.35);
@@ -47,7 +47,10 @@
       pupils[i].setAttribute('transform', 'translate(' + (px * 13).toFixed(2) + ' ' + (py * 13).toFixed(2) + ')');
       lidsR[i].setAttribute('height', (58 * lid).toFixed(2));
     }
-    face.setAttribute('transform', 'translate(' + (x * 9).toFixed(2) + ' ' + (y * 7).toFixed(2) + ')');
+    face.setAttribute('transform', 'translate(' + (x * 18).toFixed(2) + ' ' + (y * 13).toFixed(2) + ')');
+    back.setAttribute('transform', 'translate(' + (-x * 9).toFixed(2) + ' ' + (-y * 7 + 5).toFixed(2) + ')');
+    dark.setAttribute('transform', 'translate(' + (-x * 34).toFixed(2) + ' ' + (-y * 26 + 8).toFixed(2) + ')');
+    light.setAttribute('transform', 'translate(' + (x * 46 - 18).toFixed(2) + ' ' + (y * 36 - 30).toFixed(2) + ')');
     var gT = 'translate(' + (x * 2).toFixed(2) + ' ' + (y * 1.5).toFixed(2) + ')';
     glasses.setAttribute('transform', gT); eyesO.setAttribute('transform', gT); eyesC.setAttribute('transform', gT);
     bow.setAttribute('transform', 'translate(' + (200 - x * 3).toFixed(2) + ' ' + (276 - y * 2).toFixed(2) + ') rotate(' + (x * 4).toFixed(2) + ')');
@@ -55,7 +58,8 @@
       var b = Math.sin(t * 1.6) * 7;
       bob.setAttribute('transform', 'translate(0 ' + b.toFixed(2) + ')');
       shadow.setAttribute('transform', 'translate(200 370) scale(' + (1 - b / 90).toFixed(3) + ') translate(-200 -370)');
-      svg.style.transform = 'translateX(' + (x * 10).toFixed(2) + 'px) rotateY(' + (x * 32).toFixed(2) + 'deg) rotateX(' + (-y * 22).toFixed(2) + 'deg) rotateZ(' + (x * 12).toFixed(2) + 'deg) skewX(' + (-x * 6).toFixed(2) + 'deg)';
+      var ax = Math.abs(x), sq = 1 + (vy * 0.6);
+      svg.style.transform = 'translateX(' + (x * 12).toFixed(2) + 'px) rotateY(' + (x * 19).toFixed(2) + 'deg) rotateX(' + (-y * 14).toFixed(2) + 'deg) rotateZ(' + (x * 9).toFixed(2) + 'deg) skewX(' + (-x * 5).toFixed(2) + 'deg) scale(' + (1 - ax * 0.05 + vx * 0.3 * Math.sign(x || 1)).toFixed(3) + ',' + (sq + ax * 0.03).toFixed(3) + ')';
     }
     requestAnimationFrame(frame);
   }
