@@ -649,11 +649,11 @@ body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: col
 .work-item--coral .work-thumb.swatch::before, .work-item--coral .work-thumb.swatch::after { display: none; }
 .work-item--coral .work-link:is(:hover, :focus-visible) .work-thumb.swatch { box-shadow: inset 0 0 0 2px rgba(255,255,255,.85), 0 12px 24px -10px rgba(0,0,0,.4); }
 /* GoMo home thumbnail: app-icon tile on GoMo blue (#038dea, sampled from gomo.png) */
-.work-item--sky .work-thumb.swatch { background: #038dea url("../img/gomo.png?v=57") center / auto 82% no-repeat; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 10px 22px -12px rgba(0,0,0,.35); }
+.work-item--sky .work-thumb.swatch { background: #038dea url("../img/gomo.png?v=58") center / auto 82% no-repeat; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 10px 22px -12px rgba(0,0,0,.35); }
 .work-item--sky .work-thumb.swatch::before, .work-item--sky .work-thumb.swatch::after { display: none; }
 .work-item--sky .work-link:is(:hover, :focus-visible) .work-thumb.swatch { box-shadow: inset 0 0 0 2px rgba(255,255,255,.85), 0 12px 24px -10px rgba(0,0,0,.4); }
 /* Pixel Game home thumbnail: app icon, sky extended to landscape */
-.work-item--lime .work-thumb.swatch { background: #0082fe url("../img/pixel-game-thumb.png?v=57") center / cover no-repeat; image-rendering: pixelated; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 10px 22px -12px rgba(0,0,0,.35); }
+.work-item--lime .work-thumb.swatch { background: #0082fe url("../img/pixel-game-thumb.png?v=58") center / cover no-repeat; image-rendering: pixelated; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 10px 22px -12px rgba(0,0,0,.35); }
 .work-item--lime .work-thumb.swatch::before, .work-item--lime .work-thumb.swatch::after { display: none; }
 .work-item--lime .work-link:is(:hover, :focus-visible) .work-thumb.swatch { box-shadow: inset 0 0 0 2px rgba(255,255,255,.85), 0 12px 24px -10px rgba(0,0,0,.4); }
 /* In Progress status dot: soft repeating green glow pulse everywhere (kept even with reduced motion: gentle, small) */
@@ -676,3 +676,5 @@ body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: col
 .star-svg.is-happy .st-eyes-closed { opacity: 1; }
 .star-svg.is-happy .st-eyes-open { opacity: 0; }
 @media (max-width: 760px) { .hero-star { right: 50%; transform: translateX(50%); top: calc(var(--header-h) + 3vh); width: min(58vw, 34vh); } }
+/* Home hero bubble: a bit wider for the welcome text */
+.hero--home .hero-sub { max-width: 46ch; }
