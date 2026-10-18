@@ -1,4 +1,4 @@
-/* Living mascot star: blink, happy eyes, follow pointer, idle float. rAF only, no libraries. */
+/* Living mascot star: blink, happy eyes, follow pointer, idle float. rAF only (paused offscreen / hidden tab), no libraries. */
 (function () {
   var root = document.querySelector('.hero-star');
   if (!root) return;
@@ -73,7 +73,16 @@
       svg.style.transform = spinXf(now) + 'translateX(' + (x * 12).toFixed(2) + 'px) rotateY(' + (x * 19).toFixed(2) + 'deg) rotateX(' + (-y * 14).toFixed(2) + 'deg) rotateZ(' + (x * 9).toFixed(2) + 'deg) skewX(' + (-x * 5).toFixed(2) + 'deg) scale(' + (1 - ax * 0.05 + vx * 0.3 * Math.sign(x || 1)).toFixed(3) + ',' + (sq + ax * 0.03).toFixed(3) + ')';
     }
     if (reduce) svg.style.transform = spinXf(now);
-    requestAnimationFrame(frame);
+    raf = running ? requestAnimationFrame(frame) : 0;
   }
-  requestAnimationFrame(frame);
+  // only animate while the star is on screen and the tab is visible
+  var raf = 0, running = false, onScreen = true;
+  function sync() {
+    var want = onScreen && !document.hidden;
+    if (want && !running) { running = true; raf = requestAnimationFrame(frame); }
+    else if (!want && running) { running = false; cancelAnimationFrame(raf); raf = 0; }
+  }
+  document.addEventListener('visibilitychange', sync);
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { onScreen = es[es.length - 1].isIntersecting; sync(); }).observe(root);
+  sync();
 })();
