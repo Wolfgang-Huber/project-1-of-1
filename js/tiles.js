@@ -43,5 +43,6 @@
     hero.style.setProperty('--tiles-img', 'url(' + c.toDataURL('image/png') + ')');
     hero.style.setProperty('--tiles-size', (n * css) + 'px');
     hero.classList.add('has-tiles');
+    document.documentElement.style.setProperty('--tiles-img', 'url(' + c.toDataURL('image/png') + ')'); document.documentElement.style.setProperty('--tiles-size', (n * css) + 'px');
   } catch (e) { /* CSS fallback grid remains */ }
 })();
