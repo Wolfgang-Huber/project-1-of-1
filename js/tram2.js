@@ -16,7 +16,7 @@
   }
   function go() {
     if (busy) return; busy = true; el.classList.add('is-busy');
-    var kk = k(), w = view.clientWidth, idle = 128 * kk, dist = w - idle;
+    var kk = k(), w = view.clientWidth, idle = parseFloat(el.dataset.idle || 128) * kk, dist = w - idle;
     el.style.setProperty('--x1', w + 'px');
     el.style.setProperty('--spin', (dist / (2 * Math.PI * 9 * kk) * 360).toFixed(0) + 'deg');
     el.style.setProperty('--dur', Math.max(4.5, Math.min(8, dist / 150)).toFixed(2) + 's');
